@@ -6,7 +6,7 @@ const sqlite3 = require('sqlite3').verbose();
 const DBPATH = 'data/curriculo.db';
 
 const hostname = '127.0.0.1';
-const port = 3000;
+const port = 3001;
 const app = express();
 
 /* Colocar toda a parte estática no frontend */
@@ -16,6 +16,23 @@ app.use(express.static("frontend/"));
 /******** CRUD ************/
 app.use(express.json());
 
+function leituraRegistro(caminho,tabela){ 
+	app.get(`${caminho}`, (req, res) => {
+	res.statusCode = 200;
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	var db = new sqlite3.Database(DBPATH); // Abre o banco
+	var sql = 'SELECT * FROM ' +`${tabela}` + ' '+ 'WHERE cod_pessoa = '+ req.query.cod_pessoa + ';';
+		db.all(sql, [],  (err, rows ) => {
+			if (err) {
+				throw err;
+			}
+			res.json(rows);
+		});
+		db.close(); // Fecha o banco
+});
+}
+
+// Retorna todos registros (é o R do CRUD - Read)
 // Retorna todos registros (é o R do CRUD - Read)
 app.get('/curriculos', (req, res) => {
 	res.statusCode = 200;
@@ -54,7 +71,7 @@ app.post('/insereCurriculo', urlencodedParser, (req, res) => {
 app.get('/pegarDados', (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); 
-	sql = "SELECT * FROM dados_pessoais WHERE cod_pessoa="+ req.query.cod_pessoa;
+	sql = "SELECT * FROM dados_pessoais WHERE cod_pessoa="+ req.query.cod_pessoa + ";";
 	console.log(sql);
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
 	db.all(sql, [],  (err, rows ) => {
@@ -99,6 +116,14 @@ app.post('/removeCurriculo', urlencodedParser, (req, res) => {
 	});
 	db.close(); // Fecha o banco
 });
+
+// como não existe um front end que possibilite indicar qual usuário está sendo requisitado, as funções abaixo precisam de inserção do parâmetro cod_pessoa com value = 3 para testar o endpoint
+leituraRegistro('/experiencia','experiencia');
+leituraRegistro('/formacao','formacao');
+leituraRegistro('/habilidade','habilidade');
+leituraRegistro('/personalidade','personalidade');
+leituraRegistro('/realizacao','realizacao');
+
 
 app.listen(port, hostname, () => {
   console.log(`Servidor rodando em http://${hostname}:${port}/`);
