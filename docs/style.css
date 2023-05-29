@@ -44,15 +44,6 @@
 	#botao{
 		margin-left: 40%;
 	}
-	#principal{
-		/* Largura máxima */
-		max-width:960px;
-		/* Alinha ao centro */
-		margin:0 auto;
-        height: 30%;
-		position: static;
-
-	}
     
 	#conteudo{
 		/* Largura */
