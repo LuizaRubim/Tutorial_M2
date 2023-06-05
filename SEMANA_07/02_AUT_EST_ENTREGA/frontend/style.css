@@ -1,0 +1,149 @@
+@charset "utf-8";
+
+/* CSS Document */
+	* {
+		margin:0;
+		padding:0;
+		box-sizing: border-box;
+		
+	}
+	/*imagens flexiveis*/
+	/* img {   
+		max-width: 100%;
+	 	text-align:center;   
+		height: 100%;  
+  	} 
+ */
+	#foto {
+        width: 17.9%;
+        height: 17.9%;
+		text-align: left;
+		padding: 3em;
+	}
+
+	body, html{
+		background:#ffffff;
+        color: #5f5f5f;
+        height: 100%;
+        overflow:auto;
+	}
+	.container {
+		display: flex;
+		align-items: center; /* Centralizar verticalmente */
+	}
+	  
+	.imagem {
+		width: 100px; /* Defina a largura da imagem */
+		height: 100px; /* Defina a altura da imagem */
+		background-image: url(fotoPerfil.jpg); /* Caminho da imagem */
+		background-size: cover; /* Redimensionar a imagem para cobrir a div */
+		margin-right: 10px; /* Espaçamento entre a imagem e o texto */
+		margin-left:10px;
+		margin-top:10px;
+	}
+	#botao{
+		margin-left: 40%;
+	}
+    
+	#conteudo{
+		/* Largura */
+		height: 100%;
+		width:30%;
+		/* Alinha à esquerda */
+		float:left;
+        
+	}
+	
+	.interno{
+		padding:10px;
+		height:auto;
+		color:black;
+		text-align: center;
+	}
+	#lateral1{
+		/* Largura */
+		height: auto;
+		width:35%;
+		/* Alinha à direita */
+		float:right;
+        
+	}
+    #lateral2{
+		/* Largura */
+		height: auto;
+		width:35%;
+		/* Alinha à direita */
+		float:right;
+      
+	}
+
+	h1{
+		color:rgb(32, 23, 156);
+		font-size: 36px;
+		font-weight: bold;
+		margin-bottom: 10px;
+		border: 2px solid rgb(32, 23, 156);
+		border-radius:15px;
+
+	}
+/*seletores para desktops*/
+@media screen and (max-width: 1128px) {
+	#conteudo{ 
+		height: auto;
+		width: 100%;
+		
+		float: none;
+	}
+	#lateral1{ 
+	   width: 100%;
+	   float: none;
+       height: auto;
+	   display: central;
+	}
+    #lateral2{
+		width: 100%;
+	   float: none;
+       height: auto;
+	   display:right;
+	}
+}
+
+/*seletores para tablets*/
+@media screen and (max-width: 768px) {
+	
+	#conteudo{ 
+	   width: 100%;
+       float: none;
+       height: auto;
+	}
+	#lateral1{ 
+	   width: 100%;
+       float: none;
+       height: auto;
+	}
+    #lateral2{
+        width: 100%;
+        float: none;
+        height: auto;
+	}
+}
+
+/*seletores para celurares*/
+@media screen and (max-width: 520px) {
+	
+	#conteudo{ 
+	    width: 100%;
+        float: none;
+        height: auto;
+	}
+	#lateral1{ 
+	    width: 100%;
+	    float: none;
+        height: auto;
+	}
+    #lateral2{
+        width: 100%;
+        float: none;
+        height: auto;
+	}
+}
