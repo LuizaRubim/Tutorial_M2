@@ -36,4 +36,20 @@ $("p,h1,h2").mouseout(function(){
         $(this).css("color", "black");}
     else{
         $(this).css("color", "white");} 
-})
+});
+
+$.ajax({
+    url:"/formacao",
+    TYPE: "GET",
+    success:(res) => {
+        let text = ""
+        res.forEach(formacao => {
+            text += `<strong> ${formacao.nome_curso} </strong><br> (${formacao.ano_inicio} - ${formacao.ano_fim})<br> ${formacao.descricao_curso}<br><br>`;
+        });
+        $("#formacao").html(text);
+        
+    },
+    error:()=> {
+        $("#formacao").text("Ocorreu um erro ao careegar essa seção");
+    }
+});
